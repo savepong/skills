@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Per-beat narration in Save's own cloned voice (local VoxCPM2, offline), stitched like build_voice.py.
+"""Per-beat narration in a consenting speaker's cloned voice (local VoxCPM2, offline), stitched like build_voice.py.
 
 Run with a python that has `voxcpm` installed (e.g. the OmniVoice VoxCPM2 venv). Set VOXCPM_REF to the
 consenting speaker's reference wav and VOXCPM_MODEL to the model folder. CPU, INT8 dynamic quant on

@@ -1,4 +1,4 @@
-// Thai OCR explainer — sound. A dry-erase marker on a glossy board, under Save's recorded voice.
+// Thai OCR explainer — sound. A dry-erase marker on a glossy board, under the owner's recorded voice.
 //
 // Driven entirely by window.OCR_OPS, the same op table visuals.js draws from: every stroke, cross,
 // paste and counter gets its sound on the exact frame it appears. Re-time the drawing and the sound

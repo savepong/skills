@@ -1,5 +1,5 @@
 // Thai OCR in the browser, no server — concept/demo explainer. Whiteboard Explainer, 9:16 (1080×1920),
-// Save's own recorded voice. One tall whiteboard; the camera travels DOWN it, one beat per board slot.
+// the owner's recorded voice. One tall whiteboard; the camera travels DOWN it, one beat per board slot.
 // Every frame is a pure function of t: randomness only from H.rng / H.makeNoise inside the draw.
 //
 // TIMING: window.OCR_TIMING (generated from voice/out/timing.json) gives each beat's start/end. Every op
