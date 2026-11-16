@@ -1,0 +1,2 @@
+// GENERATED from voice/out/timing.json by the voice build. Do not edit by hand.
+window.MSFT_TIMING = {"duration": 62.079, "beats": [{"i": 1, "start": 0.5, "end": 8.467}, {"i": 2, "start": 8.767, "end": 16.918}, {"i": 3, "start": 17.218, "end": 24.61}, {"i": 4, "start": 24.91, "end": 30.161}, {"i": 5, "start": 30.461, "end": 37.54}, {"i": 6, "start": 37.84, "end": 45.52}, {"i": 7, "start": 45.82, "end": 54.31}, {"i": 8, "start": 54.61, "end": 60.879}]}
