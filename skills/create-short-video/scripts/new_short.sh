@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 # Scaffold a new vertical explainer project from the bundled template (or another project).
-# Usage: new_short.sh <slug> [--out <dir>] [--from <template dir containing proj/>] [--install]
+# Usage: new_short.sh <slug> [--out <dir>] [--from <template dir containing proj/>] [--no-install]
 #   --out      parent folder for projects (default: $SHORT_VIDEOS_DIR or ~/Videos/shorts)
 #   --from     template to copy (default: ../template next to this script)
-#   --install  run `bun install` in the new project (otherwise node_modules is symlinked when the
-#              template has one, or you are told to install)
+#   --no-install  skip dependencies. By default node_modules is symlinked when the template has one,
+#              otherwise `bun install` runs (a project without it fails at the first `bun run stills`)
 #   --kits     folder holding src/lib (Futurepedia H + SOUND) and src/style (ported kits) and prompts/;
 #              default $CODE_MOTION_KITS or ~/Videos/shorts/_kits. These are third-party and never ship
 #              with the skill; without them you are told how to extract and port them from a Style Atlas prompt.
@@ -14,7 +14,7 @@ HERE="$(cd "$(dirname "$0")" && pwd)"
 TPL="$HERE/../template"; OUT="${SHORT_VIDEOS_DIR:-$HOME/Videos/shorts}"; INSTALL=0
 KITS="${CODE_MOTION_KITS:-$HOME/Videos/shorts/_kits}"
 while [ $# -gt 0 ]; do case "$1" in
-  --out) OUT="$2"; shift 2;; --from) TPL="$2"; shift 2;; --install) INSTALL=1; shift;; --kits) KITS="$2"; shift 2;;
+  --out) OUT="$2"; shift 2;; --from) TPL="$2"; shift 2;; --install) INSTALL=1; shift;; --no-install) INSTALL=-1; shift;; --kits) KITS="$2"; shift 2;;
   *) echo "unknown option $1" >&2; exit 2;; esac; done
 DST="$OUT/$SLUG"
 [ -e "$DST" ] && { echo "exists: $DST" >&2; exit 1; }
@@ -75,7 +75,8 @@ open(p,'w').write(s)
 PY
 
 if [ "$INSTALL" = 1 ]; then (cd "$DST/proj" && bun install)
-elif [ -d "$TPL/proj/node_modules" ]; then ln -sfn "$(cd "$TPL/proj/node_modules" && pwd -P)" "$DST/proj/node_modules"
+elif [ -d "$TPL/proj/node_modules" ] && [ "$INSTALL" != -1 ]; then ln -sfn "$(cd "$TPL/proj/node_modules" && pwd -P)" "$DST/proj/node_modules"
+elif [ "$INSTALL" != -1 ] && command -v bun >/dev/null; then (cd "$DST/proj" && bun install) || echo "bun install failed; run it yourself (step 0 below)" >&2
 fi
 NEED_INSTALL=""
 [ -n "$NEED_KITS" ] && NEED_INSTALL="  0a. kits missing (src/lib, src/style): save a Style Atlas prompt as proj/prompts/<style>.md,
