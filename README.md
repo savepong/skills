@@ -28,13 +28,13 @@ npx skills add chakrit/kien-thai --skill kien-thai --skill kode-thai
 ## Requirements
 
 `bun`, `ffmpeg`/`ffprobe`, `python3`; `uv` (or Pillow + numpy) for `measure_ink.py`.
-First project: `scripts/new_short.sh <slug> --install` runs `bun install` (Remotion pulls a headless
+First project: `scripts/new_short.sh <slug>` runs `bun install` by itself (Remotion pulls a headless
 Chrome on first render).
 
 Quick start after installing (needs your kits folder, see Licences):
 
 ```sh
-bash ~/.claude/skills/create-short-video/scripts/new_short.sh my-first-short --install
+bash ~/.claude/skills/create-short-video/scripts/new_short.sh my-first-short
 # -> ~/Videos/shorts/my-first-short/{proj,voice}
 ```
 
