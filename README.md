@@ -1,6 +1,7 @@
 # savepong/skills
 
-Agent skills for making short vertical Thai explainer videos as code (code-motion + Remotion).
+Agent skills for making short vertical Thai explainer videos as code (code-motion + Remotion),
+plus `prompt`, which turns a rough request into a complete prompt before any work starts.
 Works with any agent that reads `SKILL.md` folders: Claude Code, Codex, Cursor, OpenCode, and
 anything driven through T3 Code.
 
@@ -9,6 +10,7 @@ anything driven through T3 Code.
 ```sh
 npx skills add savepong/skills                           # pick skills and agents interactively
 npx skills add savepong/skills --skill create-short-video --skill create-video
+npx skills add savepong/skills --skill prompt
 npx skills add savepong/skills --list                    # see what is in the repo
 ```
 
@@ -24,8 +26,9 @@ npx skills add chakrit/kien-thai --skill kien-thai --skill kode-thai
 | --- | --- |
 | `create-short-video` | Runbook for a 9:16 Thai explainer (news, tool review/demo, concept, how-to): research, script, self-recorded voice, storyboard with pixel-measured framing inside the TikTok/Reels safe box, render, captions. Bundles a ready Remotion template (Ballpoint + Whiteboard kits, Itim/Sriracha/Mali Thai fonts) and the voice/measure scripts. |
 | `create-video` | The build side: timing table, beat-relative drawing ops, camera, score from the op table, porting a new Futurepedia Style Atlas style, Thai text in Latin-only styles, render checks. |
+| `prompt` | Type `/prompt <rough request>` (Codex: `$prompt`), in any language. It looks up what it can (files, repo, loaded instructions, available skills and connectors), asks only about gaps that would change the work, with a recommended option first, then drafts a prompt sized to the task. Reply **go** to run it, or copy it into ChatGPT, Gemini, an image model or a system prompt. Built on Anthropic, OpenAI and Google's current prompting guides (sources in `references/targets.md`). |
 
-## Requirements
+## Requirements (video skills)
 
 `bun`, `ffmpeg`/`ffprobe`, `python3`; `uv` (or Pillow + numpy) for `measure_ink.py`.
 First project: `scripts/new_short.sh <slug>` runs `bun install` by itself (Remotion pulls a headless
